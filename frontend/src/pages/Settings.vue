@@ -198,6 +198,8 @@ export default {
       editingKey: null,
       editValue: '',
       nextId: 1,
+      oldValue :'',
+      newValue : '',
       circumference: 2 * Math.PI * 32, // Circle circumference for progress
       
       availableLanguages: [], // initially empty, will be loaded from API
@@ -248,6 +250,31 @@ export default {
         console.log(data.translations)  // view grouped translations
       } catch (err) {
         console.error('Error loading translations:', err)
+      }
+    },
+    async updateTranslation(lang,oldValue,newValue) {
+      try {
+        const response = await fetch('/api/update_translation', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            lang: lang,
+            old_value: oldValue,
+            new_value: newValue
+          })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          this.message = result.message;
+        } else {
+          this.message = result.error || result.message;
+        }
+      } catch (error) {
+        this.message = "Error: " + error.message;
       }
     },
     selectLanguage(langCode) {
@@ -337,9 +364,20 @@ export default {
     startEdit(key) {
       this.editingKey = key;
       this.editValue = this.translations[key][this.selectedLanguage] || '';
+      this.oldValue = this.editValue
     },
-    saveEdit(key) {
+    async saveEdit(key) {
       this.translations[key][this.selectedLanguage] = this.editValue;
+      this.newValue =  this.editValue
+      
+      if (this.newValue !== this.oldValue){
+        // console.log("new word :",this.newValue)
+        // console.log("old word :",this.oldValue)
+        // console.log("key :",this.selectedLanguage)
+        await this.updateTranslation(this.selectedLanguage,this.oldValue,this.newValue)
+        window.location.reload(true)
+        
+      }
       this.editingKey = null;
       this.editValue = '';
     },

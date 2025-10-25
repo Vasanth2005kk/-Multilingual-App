@@ -19,7 +19,7 @@ class Translation(db.Model):
     key = db.Column(db.String(255), nullable=False)
     lang = db.Column(db.String(10), nullable=False)
     name = db.Column(db.String(100), nullable=False)
-    value = db.Column(db.Text, nullable=False)
+    value = db.Column(db.Text, nullable=True)
     
     __table_args__ = (db.UniqueConstraint('key', 'lang', name='unique_key_lang'),)
 
@@ -29,25 +29,29 @@ def init_db():
 
         # Only load defaults if DB is empty
         if Translation.query.first() is None:
-            json_path = os.path.join(os.path.dirname(__file__), "translations.json")
-            
-            with open(json_path, "r", encoding="utf-8") as f:
-                translations_data = json.load(f)
+            json_path = os.path.join(os.path.dirname(__file__), "translations")
 
-            # Convert JSON data into Translation objects
-            translations = [
-                Translation(
-                    key=item["key"],
-                    lang=item["lang"],
-                    name=item["name"],
-                    value=item["value"]
-                )
-                for item in translations_data
-            ]
+            for f in os.listdir(json_path):
+                if os.path.isfile(os.path.join(json_path, f)):
+                    file_path =  os.path.join(json_path,f)
+                    languageName = f.split(".")[0]
+                    with open(file_path, "r", encoding="utf-8") as f:
+                        translations_data = json.load(f)
 
-            db.session.add_all(translations)
-            db.session.commit()
-            print(f"✅ Database initialized with {len(translations)} translations!")
+                    # Convert JSON data into Translation objects
+                    translations = [
+                        Translation(
+                            key=item["key"],
+                            lang=item["lang"],
+                            name=item["name"],
+                            value=item["value"]
+                        )
+                        for item in translations_data
+                    ]
+
+                    db.session.add_all(translations)
+                    db.session.commit()
+                    print(f"✅ Database initialized with {len(translations)} translations!",languageName)
         else:
             print("ℹ️ Translations already exist in the database.")
 
@@ -126,7 +130,28 @@ def get_datas():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-    
+@app.route('/api/update_translation', methods=['POST'])
+def update_translation():
+    # Get JSON data from request body
+    data = request.get_json()
+
+    lang = data.get('lang')
+    old_value = data.get('old_value')
+    new_value = data.get('new_value')
+
+    # Update query using SQLAlchemy
+    updated_rows = db.session.query(Translation).filter_by(
+        lang=lang,
+        value=old_value
+    ).update({'value': new_value})
+
+    db.session.commit()
+
+    if updated_rows > 0:
+        return jsonify({'message': f'{updated_rows} record(s) updated successfully.'})
+    else:
+        return jsonify({'message': 'No matching records found.'}), 404
+
 if __name__ == '__main__':
     init_db()
     app.run(debug=True, port=5000)

@@ -1,0 +1,62 @@
+[
+    {
+        "key": "navbar.home",
+        "lang": "ta",
+        "name": "tamil",
+        "value": "முகப்பு"
+      },
+      {
+        "key": "navbar.settings",
+        "lang": "ta",
+        "name": "tamil",
+        "value": "அமைப்புகள்"
+      },
+      {
+        "key": "home.title",
+        "lang": "ta",
+        "name": "tamil",
+        "value": "பன்மொழி பயன்பாட்டிற்கு வருக."
+      },
+      {
+        "key": "home.description1",
+        "lang": "ta",
+        "name": "tamil",
+        "value": "இந்த பயன்பாடு பல மொழிகளில் உள்ளடக்கத்தை அனுபவிக்க உதவுகிறது."
+      },
+      {
+        "key": "home.description2",
+        "lang": "ta",
+        "name": "tamil",
+        "value": "நீங்கள் பல மொழிகளுக்கிடையில் எளிதாக எந்த நேரத்திலும் மாற்றலாம்."
+      },
+      {
+        "key": "home.description3",
+        "lang": "ta",
+        "name": "tamil",
+        "value": "இது பல பிராந்தியங்களிலிருந்து வரும் பயனர்களுடன் இணைவதற்கு உதவுகிறது."
+      },
+      {
+        "key": "home.description4",
+        "lang": "ta",
+        "name": "tamil",
+        "value": "உங்கள் உலாவியில் தானியங்கி மொழி மாற்றத்தின் வலிமையை அனுபவியுங்கள்!"
+      },
+      {
+        "key": "settings.language_label",
+        "lang": "ta",
+        "name": "tamil",
+        "value": "மொழி தேர்ந்தெடுக்கவும்:"
+      },
+      {
+        "key": "settings.english",
+        "lang": "ta",
+        "name": "tamil",
+        "value": "ஆங்கிலம்"
+      },
+      {
+        "key": "settings.tamil",
+        "lang": "ta",
+        "name": "tamil",
+        "value": "தமிழ்"
+      }
+]

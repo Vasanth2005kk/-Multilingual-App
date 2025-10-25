@@ -1,0 +1,62 @@
+[
+    {
+      "key": "navbar.home",
+      "lang": "en",
+      "name": "english",
+      "value": "Home"
+    },
+    {
+      "key": "navbar.settings",
+      "lang": "en",
+      "name": "english",
+      "value": "Settings"
+    },
+    {
+      "key": "home.title",
+      "lang": "en",
+      "name": "english",
+      "value": "Welcome to Multilingual App"
+    },
+    {
+      "key": "home.description1",
+      "lang": "en",
+      "name": "english",
+      "value": "This application allows you to experience content in multiple languages."
+    },
+    {
+      "key": "home.description2",
+      "lang": "en",
+      "name": "english",
+      "value": "You can switch between many languages easily at any time."
+    },
+    {
+      "key": "home.description3",
+      "lang": "en",
+      "name": "english",
+      "value": "It helps you understand and connect with users from different regions."
+    },
+    {
+      "key": "home.description4",
+      "lang": "en",
+      "name": "english",
+      "value": "Enjoy the power of dynamic language translation right in your browser!"
+    },
+    {
+      "key": "settings.language_label",
+      "lang": "en",
+      "name": "english",
+      "value": "Select Language:"
+    },
+    {
+      "key": "settings.english",
+      "lang": "en",
+      "name": "english",
+      "value": "English"
+    },
+    {
+      "key": "settings.tamil",
+      "lang": "en",
+      "name": "english",
+      "value": "Tamil"
+    } 
+  ]
