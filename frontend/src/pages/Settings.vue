@@ -319,48 +319,6 @@ export default {
       if (progress > 0) return '#ffc107';
       return '#6c757d';
     },
-    addNewKey() {
-      this.errorMessage = '';
-      const englishValue = this.newEnglishValue.trim();
-
-      if (!englishValue) {
-        this.errorMessage = 'Please enter English text.';
-        return;
-      }
-
-      const id = String(this.nextId++);
-      this.translations[id] = { en: englishValue };
-      
-      this.availableLanguages.forEach(lang => {
-        if (lang.code !== 'en') {
-          this.translations[id][lang.code] = '';
-        }
-      });
-
-      this.newEnglishValue = '';
-      this.errorMessage = '';
-    },
-    addNewKey() {
-      this.errorMessage = '';
-      const englishValue = this.newEnglishValue.trim();
-
-      if (!englishValue) {
-        this.errorMessage = 'Please enter English text.';
-        return;
-      }
-
-      const id = String(this.nextId++);
-      this.translations[id] = { en: englishValue };
-      
-      this.availableLanguages.forEach(lang => {
-        if (lang.code !== 'en') {
-          this.translations[id][lang.code] = '';
-        }
-      });
-
-      this.newEnglishValue = '';
-      this.errorMessage = '';
-    },
     startEdit(key) {
       this.editingKey = key;
       this.editValue = this.translations[key][this.selectedLanguage] || '';
